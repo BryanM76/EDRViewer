@@ -1,0 +1,193 @@
+object MainForm: TMainForm
+  Left = 397
+  Height = 486
+  Top = 155
+  Width = 498
+  ActiveControl = PageControl
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'EDR Image Viewer'
+  ClientHeight = 486
+  ClientWidth = 498
+  Constraints.MinHeight = 486
+  Constraints.MinWidth = 498
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Menu = MainMenu
+  Position = poScreenCenter
+  LCLVersion = '4.4.0.0'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 20
+    Top = 466
+    Width = 498
+    Panels = <    
+      item
+        Width = 150
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object PageControl: TPageControl
+    Left = 8
+    Height = 454
+    Top = 8
+    Width = 482
+    ActivePage = TabImage
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 1
+    OnChange = PageControlChange
+    object TabImage: TTabSheet
+      Caption = 'Image Info'
+      ClientHeight = 424
+      ClientWidth = 472
+      object MemoInfo: TMemo
+        Left = 0
+        Height = 423
+        Top = 2
+        Width = 470
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Font.Height = -13
+        Font.Name = 'Courier New'
+        ParentFont = False
+        ReadOnly = True
+        ScrollBars = ssBoth
+        TabOrder = 0
+        Visible = False
+      end
+    end
+    object TabHistoRed: TTabSheet
+      Caption = 'Histogram'
+      ClientHeight = 424
+      ClientWidth = 472
+      ImageIndex = 1
+      object ChartHistogram: TChart
+        Left = 0
+        Height = 329
+        Top = 0
+        Width = 473
+        AxisList = <        
+          item
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Alignment = calBottom
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Heading'
+        )
+        Title.Visible = True
+        object SeriesRed: TBarSeries
+          Title = 'RED'
+          BarBrush.Color = clRed
+          BarPen.Style = psClear
+          Marks.Visible = False
+        end
+        object SeriesGreen: TBarSeries
+          BarBrush.Color = clGreen
+        end
+        object SeriesBlue: TBarSeries
+          BarBrush.Color = clBlue
+        end
+      end
+      object CheckBoxRed: TCheckBox
+        Left = 8
+        Height = 23
+        Top = 336
+        Width = 52
+        Caption = 'Red'
+        TabOrder = 1
+        OnClick = CheckBoxRedClick
+      end
+      object CheckBoxGreen: TCheckBox
+        Left = 160
+        Height = 23
+        Top = 336
+        Width = 66
+        Caption = 'Green'
+        TabOrder = 2
+        OnClick = CheckBoxGreenClick
+      end
+      object CheckBoxBlue: TCheckBox
+        Left = 312
+        Height = 23
+        Top = 336
+        Width = 55
+        Caption = 'Blue'
+        TabOrder = 3
+        OnClick = CheckBoxBlueClick
+      end
+    end
+    object TabControls: TTabSheet
+      Caption = 'Controls'
+      ClientHeight = 424
+      ClientWidth = 472
+      ImageIndex = 2
+      object BtnDebug: TButton
+        Left = 24
+        Height = 48
+        Top = 16
+        Width = 168
+        Caption = 'Remove Salt + Pepper'
+        TabOrder = 0
+        OnClick = BtnDebugClick
+      end
+    end
+  end
+  object MainMenu: TMainMenu
+    Left = 416
+    Top = 120
+    object File1: TMenuItem
+      Caption = '&File'
+      object Open1: TMenuItem
+        Caption = '&Open'
+        OnClick = Open1Click
+      end
+      object OpenColourImage1: TMenuItem
+        Caption = 'Open &Colour Image Files'
+        OnClick = OpenColourImage1Click
+      end
+      object SaveAs1: TMenuItem
+        Caption = '&Save As...'
+        OnClick = SaveAs1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit1: TMenuItem
+        Caption = '&Exit'
+        OnClick = Exit1Click
+      end
+    end
+    object Help1: TMenuItem
+      Caption = '&Help'
+      object About1: TMenuItem
+        Caption = '&About...'
+        OnClick = About1Click
+      end
+    end
+  end
+  object OpenDialog: TOpenDialog
+    Left = 416
+    Top = 248
+  end
+  object SaveDialog: TSaveDialog
+    DefaultExt = '.bmp'
+    Filter = 'Bitmap|*.bmp'
+    Left = 416
+    Top = 184
+  end
+end
